@@ -44,7 +44,7 @@ function checkForTie() {
 
 let squares = document.querySelectorAll('div.square');
 let playerOne = player("Michael", "X");
-let playerTwo = player("Odie", "O");
+let playerTwo = player("Kathryn", "O");
 let currentPlayer = playerOne;
 
 squares.forEach((square) => { square.addEventListener('click', () => { 
