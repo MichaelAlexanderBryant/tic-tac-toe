@@ -49,38 +49,40 @@ let currentPlayer = playerOne;
 
 squares.forEach((square) => { square.addEventListener('click', () => { 
     let playerSelection = square.id;
-    const squareSelected = document.getElementById(playerSelection);
-    let markerImg = document.createElement('img');
-    let marker = currentPlayer.useMarker();
-    let imgSrc = "./img/" + marker + ".png";
-    markerImg.src = imgSrc;
-    squareSelected.appendChild(markerImg);
-    
-    gameboard.makePlay(+playerSelection, currentPlayer);
+    if (gameboard.viewBoard()[+playerSelection] == null) {
+        const squareSelected = document.getElementById(playerSelection);
+        let markerImg = document.createElement('img');
+        let marker = currentPlayer.useMarker();
+        let imgSrc = "./img/" + marker + ".png";
+        markerImg.src = imgSrc;
+        squareSelected.appendChild(markerImg);
+        
+        gameboard.makePlay(+playerSelection, currentPlayer);
 
-    if (checkForWin(currentPlayer)) {
-        alert(currentPlayer.showName() + " WINS!");
-        gameboard.resetBoard();
-        for (let i = 0; i < squares.length; i++) {
-            squares[i].textContent = ''
-        };
-        currentPlayer = playerOne;
+        if (checkForWin(currentPlayer)) {
+            alert(currentPlayer.showName() + " WINS!");
+            gameboard.resetBoard();
+            for (let i = 0; i < squares.length; i++) {
+                squares[i].textContent = ''
+            };
+            currentPlayer = playerOne;
 
-    }
-    else if (checkForTie(currentPlayer)) {
-        alert("It's a draw!");
-        gameboard.resetBoard();
-        for (let i = 0; i < squares.length; i++) {
-            squares[i].textContent = ''
-        };
-        currentPlayer = playerOne;
-    }
-    else {
-    if (currentPlayer.useMarker() == 'X') {
-        currentPlayer = playerTwo;
-    }
-    else {
-        currentPlayer = playerOne;
+        }
+        else if (checkForTie(currentPlayer)) {
+            alert("It's a draw!");
+            gameboard.resetBoard();
+            for (let i = 0; i < squares.length; i++) {
+                squares[i].textContent = ''
+            };
+            currentPlayer = playerOne;
+        }
+        else {
+        if (currentPlayer.useMarker() == 'X') {
+            currentPlayer = playerTwo;
+        }
+        else {
+            currentPlayer = playerOne;
+        }; 
     };
 };
 
