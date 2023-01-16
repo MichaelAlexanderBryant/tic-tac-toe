@@ -3,16 +3,40 @@
     --O: #fd7402;
     --bg-color: #014d64;
     --grid-color: white;
+
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 body {
     margin: 0;
     padding: 0;
-    display: flex;
     background-color: var(--bg-color);
 }
 
+#display {
+
+    display:flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 100px;
+    width: auto;
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--bg-color);
+
+    color: white;
+
+    font-size: 50px;
+    font-weight: bold;
+
+}
+
 #gameboard {
+
     height: 500px;
     width: 500px;
     position: absolute;
@@ -41,5 +65,17 @@ span .X {
 
 span .O {
     color: var(--O);
+}
+
+button {
+    position: absolute;
+    top: 85%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+
+    width: 200px;
+    height: 50px;
+    background-color: white;
 }
 

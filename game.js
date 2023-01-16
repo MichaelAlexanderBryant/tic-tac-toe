@@ -43,47 +43,57 @@ function checkForTie() {
 };
 
 let squares = document.querySelectorAll('div.square');
-let playerOne = player("Michael", "X");
-let playerTwo = player("Kathryn", "O");
+let playerOne = player("Player One", "X");
+let playerTwo = player("Player Two", "O");
 let currentPlayer = playerOne;
+let gameEnded = false;
+
+const gameResult = document.getElementById("display");
 
 squares.forEach((square) => { square.addEventListener('click', () => { 
-    let playerSelection = square.id;
-    if (gameboard.viewBoard()[+playerSelection] == null) {
-        const squareSelected = document.getElementById(playerSelection);
-        let markerImg = document.createElement('img');
-        let marker = currentPlayer.useMarker();
-        let imgSrc = "./img/" + marker + ".png";
-        markerImg.src = imgSrc;
-        squareSelected.appendChild(markerImg);
-        
-        gameboard.makePlay(+playerSelection, currentPlayer);
+    if (!gameEnded) {
+        let playerSelection = square.id;
+        if (gameboard.viewBoard()[+playerSelection] == null) {
+            const squareSelected = document.getElementById(playerSelection);
+            let markerImg = document.createElement('img');
+            let marker = currentPlayer.useMarker();
+            let imgSrc = "./img/" + marker + ".png";
+            markerImg.src = imgSrc;
+            squareSelected.appendChild(markerImg);
+            
+            gameboard.makePlay(+playerSelection, currentPlayer);
 
-        if (checkForWin(currentPlayer)) {
-            alert(currentPlayer.showName() + " WINS!");
-            gameboard.resetBoard();
-            for (let i = 0; i < squares.length; i++) {
-                squares[i].textContent = ''
-            };
-            currentPlayer = playerOne;
-
-        }
-        else if (checkForTie(currentPlayer)) {
-            alert("It's a draw!");
-            gameboard.resetBoard();
-            for (let i = 0; i < squares.length; i++) {
-                squares[i].textContent = ''
-            };
-            currentPlayer = playerOne;
-        }
-        else {
-        if (currentPlayer.useMarker() == 'X') {
-            currentPlayer = playerTwo;
-        }
-        else {
-            currentPlayer = playerOne;
-        }; 
+            if (checkForWin(currentPlayer)) {
+                let winner = document.createElement("span");
+                winner.textContent = currentPlayer.useMarker() + " wins!"
+                gameResult.appendChild(winner);
+                gameEnded = true;
+            }
+            else if (checkForTie(currentPlayer)) {
+                let draw = document.createElement("span");
+                draw.textContent =  "It's a draw!"
+                gameResult.appendChild(draw);
+                gameEnded = true;
+            }
+            else {
+            if (currentPlayer.useMarker() == 'X') {
+                currentPlayer = playerTwo;
+            }
+            else {
+                currentPlayer = playerOne;
+            }; 
+        };
     };
 };
 
 })});
+
+function restartGame() {
+    gameboard.resetBoard();
+    for (let i = 0; i < squares.length; i++) {
+        squares[i].textContent = ''
+    };
+    currentPlayer = playerOne;
+    gameResult.textContent = '';
+    gameEnded = false;
+};
