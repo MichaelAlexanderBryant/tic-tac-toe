@@ -1,13 +1,15 @@
 :root {
     --X: #bedb39;
     --O: #fd7402;
+    --bg-color: #014d64;
+    --grid-color: white;
 }
 
 body {
     margin: 0;
     padding: 0;
     display: flex;
-    background-color: #014d64;
+    background-color: var(--bg-color);
 }
 
 #gameboard {
@@ -18,7 +20,7 @@ body {
     left: 50%;
     margin-right: -50%;
     transform: translate(-50%, -50%);
-    background-color: white;
+    background-color: var(--grid-color);
 
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -30,7 +32,14 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: var(--bg-color);
+}
 
-    background-color: #014d64;;
+span .X {
+    color: var(--X);
+}
+
+span .O {
+    color: var(--O);
 }
 
