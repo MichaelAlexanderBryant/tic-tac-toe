@@ -1,0 +1,45 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    background-color: #014d64;
+}
+
+#gameboard {
+    height: 500px;
+    width: 500px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    background-color: #014d64;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+}
+
+.square {
+    /* border: 2px solid white; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+#one1, #four4, #seven7  {
+    border-left: 5px solid white;
+    border-right: 5px solid white;
+}
+
+#three3, #five5 {
+    border-top: 5px solid white;
+    border-bottom: 5px solid white;
+}
+
+#four4 {
+    border-top: 5px solid white;
+    border-bottom: 5px solid white;
+}
+
